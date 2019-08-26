@@ -1,0 +1,115 @@
+.invoice{
+    /*border: solid 1px black;*/
+}
+.shop-details{
+    /*text-align: center;*/
+}
+.invoice-header{
+    border: solid 1px black;
+}
+
+.main-container{
+    padding: 100px!important;
+}
+
+.label{
+    text-align: center;
+}
+.label-bold{
+    text-align: center;
+    font-weight: bold;
+}
+.headings{
+    background-color: #555;
+}
+.heading{
+    font-size: 14px;
+    padding: 4px;
+    color: white;
+}
+.bord{
+    border: solid 1px black;
+}
+.b-bottom{
+    border-bottom: solid 1px black;
+}
+.b-left{
+    border-left: solid 1px black;
+}
+.b-right{
+    border-right: solid 1px black;
+}
+.b-top{
+    border-top: solid 1px black;
+}
+.invoice-main-body{
+    border-collapse: collapse;
+    min-height: 300px;
+    position: relative;
+}
+.columns{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+.columns .row{
+    height: 100%;
+}
+
+.invoice-body-footer{
+
+}
+
+.total-amount{
+    margin-left: -0.1%;
+}
+.gst{
+    margin-left: -0.05%;
+}
+
+.customer-sign-body{
+    display: flex;
+}
+
+.customer-sign-content{
+    align-self: flex-end;
+    width: 100%;
+    padding-left: 16px
+}
+
+.gstin, .pan-no{
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.for-shop{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.print-hidden{
+    margin: 20px;
+    padding: 5px;
+}
+
+*{
+    color: #000;
+}
+.text-14{
+    font-weight: bold;
+    font-size: 12px;
+}
+
+@page { margin: 0mm; }
+
+@media print {
+    .print-hidden{
+        display: none;
+    }
+    .headings{
+        background-color: #555;
+        -webkit-print-color-adjust: exact;
+    }
+}
