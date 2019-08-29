@@ -64,18 +64,6 @@ function generateNewProductEntry() {
         "                <input type='number' class='form-control' name='product_rate[]' id='product_rate' placeholder='"+global.label_texts[3]+"' required min='0.001' step='any' value='"+ val2 + "' step='any'>\n" +
         "            </div>\n" +
         "        </div>";
-    /*
-    If the page is invoice page then we have to add extra column that is making charges column.
-     */
-    /*********************************************/
-    if(page === "invoice"){
-        append_string += "<div class='form-group col-md-3'>\n" +
-            "            <div class='input-group'>\n" +
-            "                <input type='number' class='form-control' name='making_charges[]' id='making_charges' placeholder='"+global.label_texts[4]+"' required min='0.001' step='any' value='"+ val2 + "' step='any'>\n" +
-            "            </div>\n" +
-            "        </div>";
-    }
-    /*********************************************/
 
     append_string += "<button id='delete-product-" + index + "' class='btn btn-danger delete-product' role='button' type='button' data-value='"+index+"'><i class='fa fa-trash'></i></button>\n" +
         "    </div>";
@@ -209,26 +197,10 @@ function initSelectizeOn(category_selector, product_selector) {
                     }
                     id = id.substring(id.lastIndexOf('-')+1, id.length);
                     // alert();
-                    $('#product_quantity-'+id).val(res[0].product_quantity);
+                    $('#product_quantity-'+id).attr("max",res[0].product_quantity);
                 },
             });
         },
-        render: {
-            option: function(item, escape) {
-                return '<div class="pl-3 pr-3 pt-1 pb-1">'
-                    + '<strong>'
-                    + escape(item.product_name) + ' - '
-                    + '</strong>'
-                    + escape(item.product_label)
-                    + '</div>';
-            },
-            item: function(item, escape){
-                return '<div>'
-                    + escape(item.product_name) + ' - '
-                    + escape(item.product_label)
-                    + '</div>';
-            }
-        }
     });
     select_product = $select_product[0].selectize;
     select_category = $select_category[0].selectize;

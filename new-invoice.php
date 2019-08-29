@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Invoice - Ankit Anchliya</title>
+    <title>Invoice - suresh kumhar</title>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i'>
     <link href='css/style.css' rel='stylesheet'>
     <link rel='stylesheet' href='css/invoice-template.css'>
@@ -23,19 +23,19 @@
                     <div class='row m-0'>
                         <div class='col-md-4 b-bottom p-0'>
                             <div class='label b-bottom'>Invoice No.</div>
-                            <div class='label'>INVSJ-1</div>
+                            <div class='label'>INVSJ-16</div>
                         </div>
                         <div class='col-md-4 b-left b-bottom b-right'>
 
                         </div>
                         <div class='col-md-4 b-bottom p-0'>
                             <div class='label b-bottom'>Invoice Date</div>
-                            <div class='label'>2019-05-30</div>
+                            <div class='label'>2019-08-26</div>
                         </div>
                     </div>
                 </div>
                 <div class='container customer-details'>
-                    <div class='customer-name'>Ankit Anchliya</div>
+                    <div class='customer-name'>suresh kumhar</div>
                     <div class='customer-address'>NSP</div>
                 </div>
 
@@ -66,21 +66,29 @@
                         </div>
                     </div>
                     <div class="invoice-body-contents">
-                        
+                                        <div class="row m-0">
+                    <span class="col-md-1">7113</span>
+                    <span class="col-md-4">ring</span>
+                    <span class="col-md-1">1 50</span>
+                    <span class="col-md-1">&#8377;10</span>
+                    <span class="col-md-2">&#8377;10</span>
+                    <span class="col-md-1">3 %</span>
+                    <span class="col-md-2">&#8377;10.3</span>
+                </div>
                     </div>
                 </div>
                 <div class="invoice-body-footer b-top row m-0 pr-0">
                 <div class="col-md-7"></div>
                     <div class="col-md-2 b-left  total-amount">
-                        <span class="text-14 total-amount-content">TOTAL : &#8377;0</span>
+                        <span class="text-14 total-amount-content">TOTAL : &#8377;10</span>
                     </div>
                     <div class="gst col-md-3 b-left">
                         <div class="text-14">ROUND/OFF:</div>
-                        <div class="text-14">GRAND TOTAL : &#8377;0</div>
+                        <div class="text-14">GRAND TOTAL : &#8377;10.3</div>
                     </div>
                 </div>
                 <div class="amount-in-words b-top row m-0">
-                    <span class="col-md-12">Amount in words: </span>
+                    <span class="col-md-12">Amount in words: Ten  Rupees .three  Paise</span>
                 </div>
                 <div class="gstin-panno row m-0 b-top">
                     <div class="col-md-12 gstin-panno-content">
