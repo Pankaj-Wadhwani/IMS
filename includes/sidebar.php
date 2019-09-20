@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3 text-left">Sakshi Jewellers</div>
+        <div class="sidebar-brand-text mx-3 text-left">Om Shree Satnam Sakhi</div>
     </a>
 
     <!-- Divider -->
@@ -130,18 +130,18 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
-            <i class="fas fa-fw fa-user"></i>
-            <span>User</span>
-        </a>
-        <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item ajax-link" href="users.php?src=add-user-2">Add user</a>
-                <a class="collapse-item ajax-link" href="users.php?src=view-all-users">View All Users</a>
-            </div>
-        </div>
-    </li>
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">-->
+<!--            <i class="fas fa-fw fa-user"></i>-->
+<!--            <span>User</span>-->
+<!--        </a>-->
+<!--        <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">-->
+<!--            <div class="bg-white py-2 collapse-inner rounded">-->
+<!--                <a class="collapse-item ajax-link" href="users.php?src=add-user-2">Add user</a>-->
+<!--                <a class="collapse-item ajax-link" href="users.php?src=view-all-users">View All Users</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </li>-->
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGST" aria-expanded="true" aria-controls="collapseGST">

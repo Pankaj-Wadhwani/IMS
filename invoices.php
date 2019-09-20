@@ -1,4 +1,5 @@
 <?php
+$title="Invoices";
 if (isset($_GET['src'])) {
     $src = $_GET['src'];
     if (isset($_GET['id'])) {

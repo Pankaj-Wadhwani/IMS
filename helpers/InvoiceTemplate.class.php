@@ -171,7 +171,7 @@ LIST;
                 <div class="gstin-panno row m-0 b-top">
                     <div class="col-md-12 gstin-panno-content">
                         <div class='gstin'>GSTIN: $shop_gst_no</div>
-                        <div class='pan-no'>PAN NO: $pan_no</div>
+                        <div class='pan-no'>FSSAI NO: $pan_no</div>
                     </div>
                 </div>
            </div>
@@ -182,7 +182,7 @@ LIST;
                    <span>RECEIVED ABOVE GOODS E. AND O.E</span>
                    <br>
                    <br>
-                   <span>NOTE:- NO E-WAY BILL IS REQUIRED TO BE GENERATED AS THE GOODS COVERED UNDER THIS INVOICE ARE EXEMPTED AS PER SERIAL NO. 4/5 TO THE ANNEXURE TO RULE 138 (14) OF THE CGST RULES OF 2017</span>
+                   <span>NOTE:- NO E-WAY BILL IS REQUIRED TO BE GENERATED AS THE GOODS COVERED UNDER THIS INVOICE ARE EXEMPTED AS PER SERIAL NO. 4/5 TO THE ANNEXURE TO RULE 138 (14) OF THE CGST ACT</span>
                 </div>
                 <div class="col-md-2 offset-1 bord customer-sign-body p-0">
                         <div class="customer-sign-content b-top">
@@ -205,7 +205,7 @@ LIST;
             <br>
             <div class="final-footer row m-0">
                 <div class="col-md-12 text-center bord p-0">
-                    <div class="b-bottom">SUBJECT TO MUMBAI JURISDICTION</div>
+                    <div class="b-bottom">SUBJECT TO ULHASNAGAR JURISDICTION</div>
                     <div>THIS IS A COMPUTER GENERATED INVOICE</div>
                 </div>
             </div>

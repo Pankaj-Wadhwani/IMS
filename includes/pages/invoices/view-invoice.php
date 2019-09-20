@@ -20,18 +20,18 @@ try{
 
             $shop = new Shop();
             //shop details :
-            $shop->shop_name = "Sakshi Jewellers";
-            $shop->shop_owner = "Sunil Jain";
-            $shop->shop_contact = "9881617616";
-            $shop->shop_address = "Jai Ganesh Shopping Centre, Shop No. 11, Achole Road, Nallasopara (E), 401209.";
-            $shop->email = "suniljain853@gmail.com";
+            $shop->shop_name = "Om Shree Satnam Sakhi";
+//            $shop->shop_owner = "Sunil Jain";
+            $shop->shop_contact = "9423955100";
+            $shop->shop_address = "Behind Hanuman Temple,Bk no:2004,Swami Shanti Prakash Ashram Marg,Ulhasnagar-421 005,Dist:Thane,State:Maharashtra.";
+//            $shop->email = "suniljain853@gmail.com";
             //gst details :
-            $shop->shop_gst_no = "27AIVPP0970D1ZX";
-            $shop->pan_no = "AIVPP0970D1ZX";
+            $shop->shop_gst_no = "27AAWPW1219M1ZV";
+            $shop->pan_no = "115150220000433";
             //bank details :
-            $shop->bank_name = "ICIC (GHATKOPAR BRANCH)";
-            $shop->account_no = "002605009771";
-            $shop->bank_ifsc = "ICIC0000026";
+//            $shop->bank_name = "ICIC (GHATKOPAR BRANCH)";
+//            $shop->account_no = "002605009771";
+//            $shop->bank_ifsc = "ICIC0000026";
 
             $products = array();
             $i = 0;

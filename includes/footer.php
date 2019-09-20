@@ -1,7 +1,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; <a href="https://github.com/half-code">Shailesh Jain</a> 2019</span>
+            <span>Copyright &copy; <a href="https://github.com/Pankaj-Wadhwani">Pankaj Wadhwani</a> 2019</span>
         </div>
     </div>
 </footer>

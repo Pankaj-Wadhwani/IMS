@@ -98,7 +98,8 @@ if (isset($id)) {
                         "category_name" => "Category Name",
                         "gst_rate" => "GST Rate %",
                         "product_name" => "Product Name",
-                        "product_quantity" => "Product Quantity gm's",
+                        "product_quantity" => "Product Quantity",
+                        "quantity_unit" => "Quantity Unit",
                         "product_rate" => "Product Rate &#8377;",
                     );
                     ?>

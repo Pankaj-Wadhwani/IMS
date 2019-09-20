@@ -14,8 +14,8 @@ $invoice->invoice_no = "INVSJ-1";
 $invoice->invoice_date = date("Y-m-d");
 
 $shop = new Shop();
-$shop->shop_name = "Sakshi Jewellers";
-$shop->shop_address = "Thane";
+$shop->shop_name = "Marshal Pharmacy (Ayurvedic)";
+$shop->shop_address = "Behind Hanuman Temple,Bk no;2004,Swami Shanti Prakash Ashram Marg,Ulhasnagar-421 005,Thane,Maharashtra.";
 $shop->shop_gst_no = "2A7HFPJ1774N1ZX";
 $shop->bank_name = "ICIC (GHATKOPAR BRANCH)";
 $shop->email = "jaindinesh@gmail.com";

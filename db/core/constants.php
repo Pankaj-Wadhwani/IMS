@@ -7,7 +7,7 @@
  */
 //Database related constants
 define("HOST","localhost");
-define("DB","jmsnew");
+define("DB","imsnew");
 define("USERNAME","root");
 define("PASSWORD","");
 define("INSERT_QUERY_FORMAT",1);

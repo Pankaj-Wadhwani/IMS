@@ -30,7 +30,7 @@ if(isset($_POST['op']))
                     $str = 1;
                 }
                 require_once('db/models/Product.class.php');
-                $res = Product::select("product_id,product_name,quantity_unit", 0, $str . "AND product_quantity > 0");
+                $res = Product::select("product_id,product_name,quantity_unit", 0, $str . "AND product_quantity >= 0");
 //                die($res);
                 echo json_encode($res->fetchAll());
             }
@@ -46,6 +46,20 @@ if(isset($_POST['op']))
                 }
                 require_once('db/models/Product.class.php');
                 $res = Product::select("product_quantity", 0, $str);
+                echo json_encode($res->fetchAll());
+            }
+            break;
+        case '*':
+            if($_POST['op'] === "select")
+            {
+                $conditions = $_POST;
+                unset($conditions['op']);
+                $str = getConditionString($conditions);
+                if(empty($str)){
+                    $str = 1;
+                }
+                require_once('db/models/Product.class.php');
+                $res = Product::select("*", 0, $str);
                 echo json_encode($res->fetchAll());
             }
             break;

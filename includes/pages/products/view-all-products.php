@@ -8,6 +8,7 @@ $column_names_as = array(
     "product_name" => "Product Name",
     "product_quantity" => "Product Quantity",
     "additional_specifications" => "Additional Specifications",
+    "quantity_unit" => "Quantity Unit",
 );
 
 require_once 'includes/pages/products/delete-product.php';

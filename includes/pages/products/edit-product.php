@@ -65,11 +65,15 @@ if(isset($id)){
                     <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter name of product" required maxlength="150" pattern="^[a-zA-z][a-zA-Z0-9 \(\)]*$" title="Product name is not valid" value="<?php echo $prod_to_edit->product_name; ?>">
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="quantity_unit" data-toggle="tooltip" data-placement="right" title="" >Quantity Unit<i class="fa fa-question-circle"></i></label>
+                    <input type="text" class="form-control" name="quantity_unit" id="quantity_unit" placeholder="Enter Quantity Unit" required maxlength="150" pattern="^[a-zA-z][a-zA-Z0-9 \(\)]*$" title="Quantity Unit is not valid" value="<?php echo $prod_to_edit->quantity_unit; ?>">
+                </div>
+                <div class="form-group col-md-6">
                     <label for="product_quantity" data-toggle="tooltip" data-placement="right" title="" >Adjust Stock <i class="fa fa-question-circle"></i></label>
                     <div class="input-group">
                         <input type="number" class="form-control" name="product_quantity" id="product_quantity" placeholder="Enter opening stock of product" aria-describedby="per-gm" step="any" required min="0" value="<?php echo $prod_to_edit->product_quantity; ?>">
                         <div class="input-group-append">
-                            <span class="input-group-text" id="per-gm"><?php echo UNIT?></span>
+                            <span class="input-group-text" id="per-gm"><?php echo $prod_to_edit->quantity_unit?></span>
                         </div>
                     </div>
                 </div>

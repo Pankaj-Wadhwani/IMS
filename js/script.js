@@ -77,4 +77,28 @@ $(function(){
             min: event.target.value,
         });
     });
+    $('#invoice_id').change(function (event) {
+       // alert($('#invoice_id').val());
+       var id=$('#invoice_id').val();
+        $.ajax(
+            "query-redirect.php?query=invoice",
+            {
+                data : { invoice_id : id},
+                method:"post",
+                success: function(result){
+                    result = JSON.parse(result);
+                            // alert(result.invoice_date);
+                            $('#payment_date').attr({
+                                min:result[0].invoice_date,
+                            })
+                        },
+            }
+         );
+       //
+
+
+    });
+
+    // var date = new Date('<?php echo $sdate; ?>').getDate();
+        // alert(date);
 });

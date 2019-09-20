@@ -44,6 +44,11 @@ class Product extends Table
         }return false;
     }
 
+    public static function getUniqueProductNameQuantity()
+    {
+        return  CRUD::query("SELECT product_name, quantity_unit,SUM(product_quantity) as total_quantity FROM products WHERE deleted = 0 GROUP BY product_name");
+    }
+
     public function delete()
     {
         parent::addDeleted();

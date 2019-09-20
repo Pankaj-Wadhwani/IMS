@@ -19,80 +19,87 @@ if (isset($_POST[ADD_INVOICE])) {
         $invoice = new Invoice();
         $invoice->customer_id = $_POST['customer_id'];
         $invoice->invoice_no = $_POST['invoice_no'];
-        $invoice->invoice_date = $_POST['invoice_date'];
-        $invoice->due_date = $_POST['due_date'];
+        if ($_POST['invoice_date'] > $_POST['due_date'])
+            setStatusAndMsg("error", "Due Date should be after or on Invoice Date");
+        else {
+            $invoice->invoice_date = $_POST['invoice_date'];
+            $invoice->due_date = $_POST['due_date'];
 
-        //inserting in invoice table
-        if ($invoice->insert()) {
-            //data to be inserted in invoice_product table
-            $i = 0;
-            $invoice_id = CRUD::lastInsertId();
-            $invoice_product = "";
-            $j = 0;
-            foreach ($_POST['product_id'] as $product_id) {
-                $category_id = $_POST['category_id'][$i];
-                $invoice_product = new InvoiceProduct();
-                $invoice_product->invoice_id = $invoice_id;
-                $invoice_product->product_id = $product_id;
-                $cat = Category::find('category_id = ?', $category_id);
-                $invoice_product->product_rate = doubleval($_POST['product_rate'][$i]);
-                $invoice_product->product_quantity = doubleval($_POST['product_quantity'][$i]);
-                $invoice_product->making_charges = doubleval($_POST['making_charges'][$i]);
-                $invoice_product->unit = "gm";
+            //inserting in invoice table
+            if ($invoice->insert()) {
+                //data to be inserted in invoice_product table
+                $i = 0;
+                $invoice_id = CRUD::lastInsertId();
+                $invoice_product = "";
+                $j = 0;
+                foreach ($_POST['product_id'] as $product_id) {
+                    $category_id = $_POST['category_id'][$i];
+                    $invoice_product = new InvoiceProduct();
+                    $invoice_product->invoice_id = $invoice_id;
+                    $invoice_product->product_id = $product_id;
+                    $cat = Category::find('category_id = ?', $category_id);
+                    $invoice_product->product_rate = doubleval($_POST['product_rate'][$i]);
+                    $invoice_product->product_quantity = doubleval($_POST['product_quantity'][$i]);
+                    $invoice_product->making_charges = doubleval($_POST['making_charges'][$i]);
+                    $invoice_product->unit = "gm";
 
 
 //                    $gst_rate = CRUD::query("SELECT gst_rate from gst WHERE gst_id = (SELECT gst_id from categories WHERE category_id = 3 AND deleted = 0) AND deleted = 0");
 
 //                    $gst_rate = CRUD::query("SELECT gst_rate FROM gst INNER JOIN (SELECT gst_id FROM categories WHERE category_id = 1 AND deleted = 0) AS categories ON gst.gst_id = categories.gst_id WHERE gst.deleted = 0");
 
-                $gst_rate = CRUD::query("SELECT gst_rate FROM gst INNER JOIN categories ON gst.gst_id = categories.gst_id WHERE categories.category_id = ? AND gst.deleted = 0 AND categories.deleted = 0", $category_id)->fetch()->gst_rate;
+                    $gst_rate = CRUD::query("SELECT gst_rate FROM gst INNER JOIN categories ON gst.gst_id = categories.gst_id WHERE categories.category_id = ? AND gst.deleted = 0 AND categories.deleted = 0", $category_id)->fetch()->gst_rate;
 
-                $amount = ($invoice_product->product_quantity * ($invoice_product->product_rate + $invoice_product->making_charges));
-                $gst_amount = $amount * $gst_rate / 100;
-                $totalAmount += $amount + $gst_amount;
+                    $amount = ($invoice_product->product_quantity * ($invoice_product->product_rate + $invoice_product->making_charges));
+                    $gst_amount = $amount * $gst_rate / 100;
+                    $totalAmount += $amount + $gst_amount;
 
-                //data to be updated in the product table
-                $product = Product::find("product_id = ?", $product_id);
-                $products[$j++] = $product;
-                if($invoice_product->product_quantity <= $product->product_quantity){
-                    $product->product_quantity -= $invoice_product->product_quantity;
-                }else{
-                    throw new Exception('Invoice could not be created, as product quantity is not available');
+                    //data to be updated in the product table
+                    $product = Product::find("product_id = ?", $product_id);
+                    $products[$j++] = $product;
+                    if ($invoice_product->product_quantity <= $product->product_quantity) {
+                        $product->product_quantity -= $invoice_product->product_quantity;
+                    } else {
+                        throw new Exception('Invoice could not be created, as product quantity is not available');
+                    }
+
+                    if ($invoice_product->insert() && $product->update()) {
+                        $flag = true;
+                    } else {
+                        $flag = false;
+                        break;
+                    }
+                    $i++;
                 }
-
-                if ($invoice_product->insert() && $product->update()) {
-                    $flag = true;
+                if ($flag) {
+                    $invoice = Invoice::find("invoice_id = ?", $invoice_id);
+                    $invoice->total_amount = $totalAmount;
+                    $invoice->pending_amount = $totalAmount;
+                    if ($invoice->update()) {
+                        CRUD::commit();
+                        redirect_to("invoices.php?src=view-invoice&id={$invoice_id}");
+                        setStatusAndMsg("success", "Invoice created successfully");
+                    } else {
+                        throw new Exception('Invoice cannot be created, please ensure values are correct.');
+                    }
                 } else {
-                    $flag = false;
-                    break;
-                }
-                $i++;
-            }
-            if ($flag) {
-                $invoice = Invoice::find("invoice_id = ?", $invoice_id);
-                $invoice->total_amount = $totalAmount;
-                $invoice->pending_amount = $totalAmount;
-                if ($invoice->update()) {
-                    CRUD::commit();
-                    redirect_to("invoices.php?src=view-invoice&id={$invoice_id}");
-                    setStatusAndMsg("success", "Invoice created successfully");
-                } else {
-                    throw new Exception('Invoice cannot be created, please ensure values are correct.');
+                    CRUD::rollback();
+                    setStatusAndMsg("error", "Invoice cannot be created");
                 }
             } else {
                 CRUD::rollback();
                 setStatusAndMsg("error", "Invoice cannot be created");
             }
-        } else {
-            CRUD::rollback();
-            setStatusAndMsg("error", "Invoice cannot be created");
         }
-    } catch (Exception $ex) {
-        CRUD::rollback();
-        setStatusAndMsg("error", $ex->getMessage());
-    }
+        }
+    catch
+        (Exception $ex) {
+            CRUD::rollback();
+            setStatusAndMsg("error", $ex->getMessage());
+        }
     //ending transactions
     CRUD::setAutoCommitOn(true);
+
 }
 try{
     $inv_no_res = CRUD::query("SELECT invoice_id FROM invoices ORDER BY invoice_id DESC LIMIT 1");
@@ -122,7 +129,7 @@ try{
                     <label for="invoice_no" data-toggle="tooltip" data-placement="right" title="">Invoice No. <i
                                 class="fa fa-question-circle"></i></label>
                     <input type="text" class="form-control" name="invoice_no" id="invoice_no"
-                           placeholder="Enter Invoice No. " required value="INVSJ-<?php echo $inv_no+1; ?>">
+                           placeholder="Enter Invoice No. " required value="<?php echo $inv_no+1; ?>">
                 </div>
 
                 <div class="form-group col-md-3 offset-1">

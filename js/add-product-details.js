@@ -57,7 +57,7 @@ function generateNewProductEntry() {
         "            </select>\n" +
         "        </div>\n" +
         "        <div class='form-group col-md-4'>\n" +
-        "            <input type='number' class='form-control' name='product_quantity[]' id='product_quantity-"+index+"' required  min='0.001' step='any' value='"+ val + "' placeholder='"+global.label_texts[2]+"'>\n" +
+        "            <input type='number' class='form-control' name='product_quantity[]' id='product_quantity-"+index+"' required step='any' value='"+ val + "' placeholder='"+global.label_texts[2]+"'>\n" +
         "        </div>\n" +
         "<div class='form-group col-md-4'>\n" +
         "            <div class='input-group'>\n" +
@@ -188,7 +188,7 @@ function initSelectizeOn(category_selector, product_selector) {
             xhr && xhr.abort();
             xhr = $.post({
                 url: "query-redirect.php?query=product",
-                data: {op: 'select', field: 'product_quantity', product_id: value},
+                data: {op: 'select', field: '*', product_id: value},
                 success: function (result) {
                     let res = JSON.parse(result);
                     if ($.isEmptyObject(res)) {
@@ -196,8 +196,10 @@ function initSelectizeOn(category_selector, product_selector) {
                         return;
                     }
                     id = id.substring(id.lastIndexOf('-')+1, id.length);
-                    // alert();
-                    $('#product_quantity-'+id).attr("max",res[0].product_quantity);
+                    // alert(page);
+                    if(page === "invoice")
+                        $('#product_quantity-'+id).attr("max",res[0].product_quantity);
+                    $('#product_quantity-'+id).attr('placeholder',"Select quantity in "+res[0].quantity_unit);
                 },
             });
         },

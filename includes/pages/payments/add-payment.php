@@ -4,9 +4,9 @@ require_once ('db/models/Invoice.class.php');
 require_once 'constants.php';
 require_once ('helpers/redirect-helper.php');
 if(isset($_POST[ADD_PAYMENT])) {
-    try
-    {
+    try {
         $arr = $_POST;
+
         unset($arr[ADD_PAYMENT]);
         $arrKeys = array_keys($arr);
         CRUD::setAutoCommitOn(false);
@@ -15,37 +15,41 @@ if(isset($_POST[ADD_PAYMENT])) {
         $payment = new Payment();
 
         $invoice = Invoice::find("invoice_id= ?", $arr['invoice_id']);
-        if($invoice){
+        $date = new DateTime($invoice->invoice_date);
+        $sdate = $date->format('M d, Y H:I:s');
+        if ($arr['payment_date'] < ($invoice->invoice_date)) {
+            setStatusAndMsg("error","Payment date should be after or on invoive date");
+        }else{
+        if ($invoice) {
             foreach ($arrKeys as $item) {
                 $payment->$item = $arr[$item];
             }
             $flag = 0;
-            if($payment->insert()) {
-                $flag=1;
+            if ($payment->insert()) {
+                $flag = 1;
                 if ($arr['payment_amount'] <= $invoice->pending_amount) {
                     $invoice->pending_amount = $invoice->pending_amount - $arr['payment_amount'];
-                    if($invoice->update())
+                    if ($invoice->update())
                         $flag = 1;
                     else {
                         $flag = 0;
                         setStatusAndMsg("error", "invoice could not be updated");
                     }
-                }else{
+                } else {
                     $flag = 0;
                     setStatusAndMsg("error", "Payment amount is greater than pending amount");
                 }
             }
-            if ($flag)
-            {
+            if ($flag) {
                 CRUD::commit();
-                setStatusAndMsg("success","Payment added successfully");
-            }else
-            {
+                setStatusAndMsg("success", "Payment added successfully");
+            } else {
                 CRUD::rollback();
             }
-        }else{
-            setStatusAndMsg("error","Invoice Number does not exists");
+        } else {
+            setStatusAndMsg("error", "Invoice Number does not exists");
         }
+    }
     }
     catch (Exception $ex)
     {
@@ -67,6 +71,7 @@ if(isset($_POST[ADD_PAYMENT])) {
                     $result = Invoice::select();
                     foreach ($result as $pay){
                         $selected = "";
+
                         if(isset($id) && $pay->invoice_id == $id){
                             $selected = "selected";
                         }
