@@ -1,2 +1,2 @@
-# JewelleryMS
-Inventory Management system for Jewelers Shop.
+# IMS
+INVENTORY-MANGEMENT-SYSTEM for any shop.
